@@ -57,19 +57,110 @@ dependencies = [
 ]
 
 [[package]]
-name = "anyhow"
-version = "1.0.99"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b0674a1ddeecb70197781e945de4b3b8ffb61fa939a5597bcf48503737663100"
+name = "arch-atlas"
+version = "0.2.0"
 dependencies = [
- "backtrace",
+ "arch-atlas-macros",
+ "arch-atlas-proc-macros",
+ "arch_program",
+ "arch_sdk",
+ "async-trait",
+ "borsh",
+ "log",
+ "serde",
+ "serde_json",
+ "thiserror 1.0.69",
+ "titan-client",
+ "tokio",
+ "tokio-util",
+ "uuid",
+]
+
+[[package]]
+name = "arch-atlas-macros"
+version = "0.2.0"
+
+[[package]]
+name = "arch-atlas-proc-macros"
+version = "0.2.0"
+dependencies = [
+ "borsh-derive-internal-satellite",
+ "hex",
+ "proc-macro2",
+ "quote",
+ "serde",
+ "syn 1.0.109",
+]
+
+[[package]]
+name = "arch-atlas-rocksdb-checkpoint-store"
+version = "0.2.0"
+dependencies = [
+ "arch-atlas",
+ "async-trait",
+ "log",
+ "rocksdb",
+ "thiserror 1.0.69",
+ "tokio",
+]
+
+[[package]]
+name = "arch-atlas-rollback-datasource"
+version = "0.2.0"
+dependencies = [
+ "arch-atlas",
+ "arch_program",
+ "arch_sdk",
+ "async-trait",
+ "futures",
+ "hex",
+ "thiserror 1.0.69",
+ "titan-client",
+ "tokio",
+ "tokio-util",
+ "tracing",
+]
+
+[[package]]
+name = "arch-atlas-rpc-datasource"
+version = "0.2.0"
+dependencies = [
+ "arch-atlas",
+ "arch_program",
+ "arch_sdk",
+ "async-trait",
+ "futures",
+ "hex",
+ "thiserror 1.0.69",
+ "titan-client",
+ "tokio",
+ "tokio-util",
+ "tracing",
+]
+
+[[package]]
+name = "arch-atlas-titan-datasource"
+version = "0.2.0"
+dependencies = [
+ "arch-atlas",
+ "arch_program",
+ "arch_sdk",
+ "async-trait",
+ "bitcoin",
+ "futures",
+ "hex",
+ "thiserror 1.0.69",
+ "titan-client",
+ "tokio",
+ "tokio-util",
+ "tracing",
 ]
 
 [[package]]
 name = "arch_program"
-version = "0.5.15"
+version = "0.6.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f7ce0c4ff38788e0af531ea64093121c45451e0da79d35b5bf511aff680d58cb"
+checksum = "a8e5090cf30dc736990b591cd4b9845c80b45de5aee52cd2bbd8807efeef2b19"
 dependencies = [
  "base64 0.22.1",
  "bincode",
@@ -80,6 +171,7 @@ dependencies = [
  "borsh",
  "bs58",
  "bytemuck",
+ "five8_const",
  "hex",
  "memoffset",
  "num-derive",
@@ -93,16 +185,17 @@ dependencies = [
  "sha3",
  "solana-sanitize",
  "thiserror 1.0.69",
+ "titan-types-core",
 ]
 
 [[package]]
 name = "arch_sdk"
-version = "0.5.15"
+version = "0.6.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "573ea60ff40739f1776905f7f662ebcf2f542844c7838e23d714cb8963eaf0c5"
+checksum = "564ffdf1d57de63648f73cdb90a011c398979d75ee17b8546c04f3d3de069070"
 dependencies = [
- "anyhow",
  "arch_program",
+ "async-trait",
  "base64 0.22.1",
  "bip322",
  "bitcode",
@@ -146,117 +239,17 @@ dependencies = [
 ]
 
 [[package]]
-name = "atlas-arch"
-version = "0.1.5"
-dependencies = [
- "arch_program",
- "arch_sdk",
- "async-trait",
- "atlas-macros",
- "atlas-proc-macros",
- "borsh",
- "log",
- "serde",
- "serde_json",
- "thiserror 1.0.69",
- "titan-client",
- "tokio",
- "tokio-util",
- "uuid",
-]
-
-[[package]]
-name = "atlas-arch-rpc-datasource"
-version = "0.1.5"
-dependencies = [
- "arch_program",
- "arch_sdk",
- "async-trait",
- "atlas-arch",
- "futures",
- "hex",
- "thiserror 1.0.69",
- "titan-client",
- "tokio",
- "tokio-util",
- "tracing",
-]
-
-[[package]]
 name = "atlas-example-rollback-pipe"
 version = "0.1.0"
 dependencies = [
+ "arch-atlas",
  "arch_program",
  "arch_sdk",
  "async-trait",
- "atlas-arch",
  "log",
  "serde",
  "serde_json",
  "thiserror 1.0.69",
- "tokio",
- "tokio-util",
- "tracing",
-]
-
-[[package]]
-name = "atlas-macros"
-version = "0.1.5"
-
-[[package]]
-name = "atlas-proc-macros"
-version = "0.1.5"
-dependencies = [
- "borsh-derive-internal-satellite",
- "hex",
- "proc-macro2",
- "quote",
- "serde",
- "syn 1.0.109",
-]
-
-[[package]]
-name = "atlas-rocksdb-checkpoint-store"
-version = "0.1.5"
-dependencies = [
- "async-trait",
- "atlas-arch",
- "log",
- "rocksdb",
- "thiserror 1.0.69",
- "tokio",
-]
-
-[[package]]
-name = "atlas-rollback-datasource"
-version = "0.1.5"
-dependencies = [
- "arch_program",
- "arch_sdk",
- "async-trait",
- "atlas-arch",
- "futures",
- "hex",
- "thiserror 1.0.69",
- "titan-client",
- "tokio",
- "tokio-util",
- "tracing",
-]
-
-[[package]]
-name = "atlas-titan-datasource"
-version = "0.1.5"
-dependencies = [
- "arch_program",
- "arch_sdk",
- "async-trait",
- "atlas-arch",
- "bitcoin",
- "futures",
- "hex",
- "thiserror 1.0.69",
- "titan-client",
  "tokio",
  "tokio-util",
  "tracing",
@@ -851,6 +844,21 @@ name = "find-msvc-tools"
 version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e178e4fba8a2726903f6ba98a6d221e76f9c12c650d5dc0e6afdc50677b49650"
+
+[[package]]
+name = "five8_const"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1a0f1728185f277989ca573a402716ae0beaaea3f76a8ff87ef9dd8fb19436c5"
+dependencies = [
+ "five8_core",
+]
+
+[[package]]
+name = "five8_core"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "059c31d7d36c43fe39d89e55711858b4da8be7eb6dabac23c7289b1a19489406"
 
 [[package]]
 name = "fnv"
@@ -2232,11 +2240,11 @@ checksum = "28d3b2b1366ec20994f1fd18c3c594f05c5dd4bc44d8bb0c1c632c8d6829481f"
 
 [[package]]
 name = "saturn-atlas-amm-decoder"
-version = "0.1.5"
+version = "0.2.0"
 dependencies = [
+ "arch-atlas",
  "arch_program",
  "arch_sdk",
- "atlas-arch",
  "bitcoin",
  "borsh",
  "serde",
@@ -2765,6 +2773,21 @@ dependencies = [
  "serde",
  "thiserror 2.0.16",
  "uuid",
+]
+
+[[package]]
+name = "titan-types-core"
+version = "1.3.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9aa5665a2e6ba9f63d79548abb5ee70f0e389910d6beb7d5969f8d6c2c2e8b53"
+dependencies = [
+ "bitcoin",
+ "bitcoin-io",
+ "borsh",
+ "bytemuck",
+ "hex",
+ "serde",
+ "thiserror 2.0.16",
 ]
 
 [[package]]

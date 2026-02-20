@@ -1,12 +1,12 @@
 use std::collections::HashMap;
 
 use async_trait::async_trait;
-use atlas_arch::datasource::{
+use arch_atlas::datasource::{
     Datasource, DatasourceId, ReappliedTransactionsEvent, RolledbackTransactionsEvent, UpdateType,
     Updates,
 };
-use atlas_arch::error::IndexerResult;
-use atlas_arch::metrics::MetricsCollection;
+use arch_atlas::error::IndexerResult;
+use arch_atlas::metrics::MetricsCollection;
 use tokio_util::sync::CancellationToken;
 
 use arch_sdk::RollbackStatus;
@@ -85,14 +85,14 @@ where
             .arch
             .get_transactions_by_hashes(self.txids_to_check.clone())
             .await
-            .map_err(|e| atlas_arch::error::Error::Custom(e))?;
+            .map_err(|e| arch_atlas::error::Error::Custom(e))?;
 
         // Fetch current arch height
         let arch_height = self
             .arch
             .get_current_arch_height()
             .await
-            .map_err(|e| atlas_arch::error::Error::Custom(e))?;
+            .map_err(|e| arch_atlas::error::Error::Custom(e))?;
 
         let mut replaced_ids: Vec<String> = Vec::new();
         let mut added_ids: Vec<String> = Vec::new();

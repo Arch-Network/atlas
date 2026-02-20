@@ -1,9 +1,9 @@
 [package]
-name = "atlas-rocksdb-checkpoint-store"
+name = "arch-atlas-rocksdb-checkpoint-store"
 version.workspace = true
 edition = "2021"
 license = "MIT"
-repository = "https://github.com/saturnBTC/atlas"
+repository = "https://github.com/Arch-Network/atlas"
 description = "Atlas checkpoint store implementation backed by RocksDB."
 
 [dependencies]
@@ -13,4 +13,4 @@ rocksdb = { workspace = true }
 thiserror = { workspace = true }
 log = { workspace = true }
 
-atlas-arch = { workspace = true }
+arch-atlas = { workspace = true }

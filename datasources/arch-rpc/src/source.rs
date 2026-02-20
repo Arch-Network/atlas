@@ -1,13 +1,13 @@
 use std::sync::Arc;
 
 use async_trait::async_trait;
-use atlas_arch::datasource::AccountUpdate;
-use atlas_arch::datasource::{
+use arch_atlas::datasource::AccountUpdate;
+use arch_atlas::datasource::{
     BlockDetails, Datasource, DatasourceId, TransactionUpdate, UpdateType, Updates,
 };
-use atlas_arch::error::IndexerResult;
-use atlas_arch::metrics::MetricsCollection;
-use atlas_arch::sync::{BackfillSource, TipSource};
+use arch_atlas::error::IndexerResult;
+use arch_atlas::metrics::MetricsCollection;
+use arch_atlas::sync::{BackfillSource, TipSource};
 use std::collections::HashSet;
 use std::time::Duration;
 use tokio::sync::mpsc::Sender;
@@ -70,7 +70,7 @@ impl<C: ArchRpc + Clone + Send + Sync + 'static> Datasource for ArchBackfillData
     ) -> IndexerResult<()> {
         // Initialize starting point at current best height and poll for new blocks
         let mut last_seen_height = self.client.get_block_count().await.map_err(|e| {
-            atlas_arch::error::Error::Custom(format!("arch_rpc get_block_count: {}", e))
+            arch_atlas::error::Error::Custom(format!("arch_rpc get_block_count: {}", e))
         })?;
 
         metrics
@@ -248,7 +248,7 @@ impl<C: ArchRpc + Clone + Send + Sync + 'static> Datasource for ArchBackfillData
 impl<C: ArchRpc + Clone + Send + Sync + 'static> TipSource for ArchBackfillDatasource<C> {
     async fn best_height(&self) -> IndexerResult<u64> {
         self.client.get_block_count().await.map_err(|e| {
-            atlas_arch::error::Error::Custom(format!("arch_rpc get_block_count: {}", e))
+            arch_atlas::error::Error::Custom(format!("arch_rpc get_block_count: {}", e))
         })
     }
 }

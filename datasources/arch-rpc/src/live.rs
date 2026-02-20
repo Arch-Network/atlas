@@ -1,12 +1,12 @@
 use std::sync::Arc;
 
 use async_trait::async_trait;
-use atlas_arch::datasource::{
+use arch_atlas::datasource::{
     AccountUpdate, BlockDetails, Datasource, DatasourceId, ReappliedTransactionsEvent,
     RolledbackTransactionsEvent, TransactionUpdate, UpdateType, Updates,
 };
-use atlas_arch::error::IndexerResult;
-use atlas_arch::metrics::MetricsCollection;
+use arch_atlas::error::IndexerResult;
+use arch_atlas::metrics::MetricsCollection;
 use tokio::sync::mpsc::Sender;
 use tokio_util::sync::CancellationToken;
 
@@ -15,7 +15,7 @@ use arch_sdk::{AsyncArchRpcClient, BackoffStrategy, Event, EventTopic, WebSocket
 use std::str::FromStr as _;
 use tracing::error;
 
-use atlas_arch::sync::LiveSource;
+use arch_atlas::sync::LiveSource;
 
 #[derive(Clone)]
 pub struct ArchLiveDatasource {
@@ -28,7 +28,11 @@ impl ArchLiveDatasource {
     pub fn new(websocket_url: &str, rpc_url: &str, id: DatasourceId) -> Self {
         Self {
             websocket_url: websocket_url.to_string(),
-            rpc_client: AsyncArchRpcClient::new(rpc_url),
+            rpc_client: AsyncArchRpcClient::new(&{
+                let mut cfg = arch_sdk::Config::testnet();
+                cfg.arch_node_url = rpc_url.to_string();
+                cfg
+            }),
             id,
         }
     }
@@ -98,7 +102,7 @@ impl ArchLiveDatasource {
         metrics: &Arc<MetricsCollection>,
     ) -> IndexerResult<()> {
         client.connect().await.map_err(|e| {
-            atlas_arch::error::Error::Custom(format!(
+            arch_atlas::error::Error::Custom(format!(
                 "arch_live: failed to connect websocket: {}",
                 e
             ))
@@ -153,7 +157,7 @@ impl ArchLiveDatasource {
             )
             .await
             .map_err(|e| {
-                atlas_arch::error::Error::Custom(format!(
+                arch_atlas::error::Error::Custom(format!(
                     "arch_live: failed to subscribe ReappliedTransactions: {}",
                     e
                 ))
@@ -201,7 +205,7 @@ impl ArchLiveDatasource {
             )
             .await
             .map_err(|e| {
-                atlas_arch::error::Error::Custom(format!(
+                arch_atlas::error::Error::Custom(format!(
                     "arch_live: failed to subscribe RolledbackTransactions: {}",
                     e
                 ))
@@ -280,7 +284,7 @@ impl ArchLiveDatasource {
             })
             .await
             .map_err(|e| {
-                atlas_arch::error::Error::Custom(format!(
+                arch_atlas::error::Error::Custom(format!(
                     "arch_live: failed to subscribe Block: {}",
                     e
                 ))
@@ -332,7 +336,7 @@ impl ArchLiveDatasource {
             })
             .await
             .map_err(|e| {
-                atlas_arch::error::Error::Custom(format!(
+                arch_atlas::error::Error::Custom(format!(
                     "arch_live: failed to subscribe AccountUpdate: {}",
                     e
                 ))

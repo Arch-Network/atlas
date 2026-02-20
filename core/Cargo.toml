@@ -1,14 +1,14 @@
 [package]
-name = "atlas-arch"
+name = "arch-atlas"
 version.workspace = true
 edition = "2021"
 description = "Atlas Core: a modular, high-throughput indexing pipeline for decoding and processing accounts, instructions, transactions, and block-level events."
 license = "MIT"
-repository = "https://github.com/saturnBTC/atlas"
+repository = "https://github.com/Arch-Network/atlas"
 
 [features]
 default = ["macros"]
-macros = ["atlas-macros", "atlas-proc-macros"]
+macros = ["arch-atlas-macros", "arch-atlas-proc-macros"]
 
 [dependencies]
 async-trait = { workspace = true }
@@ -26,5 +26,5 @@ arch_program = { workspace = true }
 
 titan-client = { workspace = true }
 
-atlas-proc-macros = { workspace = true, optional = true }
-atlas-macros = { workspace = true, optional = true }
+arch-atlas-proc-macros = { workspace = true, optional = true }
+arch-atlas-macros = { workspace = true, optional = true }

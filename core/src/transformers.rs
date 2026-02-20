@@ -1,5 +1,5 @@
 //! Provides utility functions to transform transaction data into various
-//! representations within the `atlas_arch` framework.
+//! representations within the `arch_atlas` framework.
 //!
 //! This module includes functions for extracting transaction metadata, parsing
 //! instructions, and nesting instructions based on stack depth. It also offers

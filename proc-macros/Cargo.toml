@@ -1,5 +1,5 @@
 [package]
-name = "atlas-proc-macros"
+name = "arch-atlas-proc-macros"
 version.workspace = true
 edition = "2021"
 description = "Procedural macros for Atlas"

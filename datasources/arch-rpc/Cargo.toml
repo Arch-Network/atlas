@@ -1,8 +1,8 @@
 [package]
-name = "atlas-arch-rpc-datasource"
+name = "arch-atlas-rpc-datasource"
 version.workspace = true
 edition = "2021"
-repository = "https://github.com/saturnBTC/atlas"
+repository = "https://github.com/Arch-Network/atlas"
 license = "MIT"
 description = "Atlas datasource that streams updates via Arch RPC."
 
@@ -18,6 +18,6 @@ hex = { workspace = true }
 arch_sdk = { workspace = true }
 arch_program = { workspace = true }
 
-atlas-arch = { workspace = true }
+arch-atlas = { workspace = true }
 
 titan-client = { workspace = true }
