@@ -1,6 +1,6 @@
 use arch_program::{instruction::Instruction, pubkey::Pubkey};
-use atlas_arch::collection::InstructionDecoderCollection;
-use atlas_arch::instruction::{DecodedInstruction, InstructionDecoder};
+use arch_atlas::collection::InstructionDecoderCollection;
+use arch_atlas::instruction::{DecodedInstruction, InstructionDecoder};
 
 use crate::mocks::LiquidityPoolParams;
 

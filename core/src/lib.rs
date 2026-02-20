@@ -19,9 +19,9 @@ pub mod transaction;
 pub mod transformers;
 
 #[cfg(feature = "macros")]
-pub use atlas_macros::*;
+pub use arch_atlas_macros::*;
 #[cfg(feature = "macros")]
-pub use atlas_proc_macros::*;
+pub use arch_atlas_proc_macros::*;
 pub use borsh;
 #[cfg(feature = "macros")]
 #[doc(hidden)]

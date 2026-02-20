@@ -639,7 +639,7 @@ impl PipelineBuilder {
     /// # Example
     ///
     /// ```rust
-    /// use atlas_arch::pipeline::PipelineBuilder;
+    /// use arch_atlas::pipeline::PipelineBuilder;
     ///
     /// let builder = PipelineBuilder::new();
     /// ```
@@ -662,7 +662,7 @@ impl PipelineBuilder {
     /// # Example
     ///
     /// ```ignore
-    /// use atlas_arch::pipeline::PipelineBuilder;
+    /// use arch_atlas::pipeline::PipelineBuilder;
     ///
     /// let builder = PipelineBuilder::new()
     ///     .datasource(MyDatasource::new());
@@ -689,7 +689,7 @@ impl PipelineBuilder {
     /// # Example
     ///
     /// ```ignore
-    /// use atlas_arch::{pipeline::PipelineBuilder, datasource::DatasourceId};
+    /// use arch_atlas::{pipeline::PipelineBuilder, datasource::DatasourceId};
     ///
     /// let mainnet_id = DatasourceId::new_named("mainnet");
     /// let builder = PipelineBuilder::new()
@@ -755,7 +755,7 @@ impl PipelineBuilder {
     /// # Example
     ///
     /// ```ignore
-    /// use atlas_arch::pipeline::PipelineBuilder;
+    /// use arch_atlas::pipeline::PipelineBuilder;
     ///
     /// let builder = PipelineBuilder::new()
     ///     .account(MyAccountDecoder, MyAccountProcessor);
@@ -798,7 +798,7 @@ impl PipelineBuilder {
     /// # Example
     ///
     /// ```ignore
-    /// use atlas_arch::{
+    /// use arch_atlas::{
     ///     pipeline::PipelineBuilder,
     ///     datasource::DatasourceId,
     ///     filter::DatasourceFilter,
@@ -806,7 +806,7 @@ impl PipelineBuilder {
     ///
     /// let mainnet_id = DatasourceId::new_named("mainnet");
     /// let filter = DatasourceFilter::new(mainnet_id);
-    /// let filters = vec![Box::new(filter) as Box<dyn atlas_arch::filter::Filter>];
+    /// let filters = vec![Box::new(filter) as Box<dyn arch_atlas::filter::Filter>];
     ///
     /// let builder = PipelineBuilder::new()
     ///     .account_with_filters(MyAccountDecoder, MyAccountProcessor, filters);
@@ -846,7 +846,7 @@ impl PipelineBuilder {
     /// # Example
     ///
     /// ```ignore
-    /// use atlas_arch::pipeline::PipelineBuilder;
+    /// use arch_atlas::pipeline::PipelineBuilder;
     ///
     /// let builder = PipelineBuilder::new()
     ///     .account_deletions(MyAccountDeletionProcessor);
@@ -883,7 +883,7 @@ impl PipelineBuilder {
     /// # Example
     ///
     /// ```ignore
-    /// use atlas_arch::{
+    /// use arch_atlas::{
     ///     pipeline::PipelineBuilder,
     ///     datasource::DatasourceId,
     ///     filter::DatasourceFilter,
@@ -891,7 +891,7 @@ impl PipelineBuilder {
     ///
     /// let mainnet_id = DatasourceId::new_named("mainnet");
     /// let filter = DatasourceFilter::new(mainnet_id);
-    /// let filters = vec![Box::new(filter) as Box<dyn atlas_arch::filter::Filter>];
+    /// let filters = vec![Box::new(filter) as Box<dyn arch_atlas::filter::Filter>];
     ///
     /// let builder = PipelineBuilder::new()
     ///     .account_deletions_with_filters(MyAccountDeletionProcessor, filters);
@@ -926,7 +926,7 @@ impl PipelineBuilder {
     /// # Example
     ///
     /// ```ignore
-    /// use atlas_arch::pipeline::PipelineBuilder;
+    /// use arch_atlas::pipeline::PipelineBuilder;
     ///
     /// let builder = PipelineBuilder::new()
     ///     .block_details(MyBlockDetailsProcessor);
@@ -1088,7 +1088,7 @@ impl PipelineBuilder {
     /// # Example
     ///
     /// ```ignore
-    /// use atlas_arch::{
+    /// use arch_atlas::{
     ///     pipeline::PipelineBuilder,
     ///     datasource::DatasourceId,
     ///     filter::DatasourceFilter,
@@ -1096,7 +1096,7 @@ impl PipelineBuilder {
     ///
     /// let mainnet_id = DatasourceId::new_named("mainnet");
     /// let filter = DatasourceFilter::new(mainnet_id);
-    /// let filters = vec![Box::new(filter) as Box<dyn atlas_arch::filter::Filter>];
+    /// let filters = vec![Box::new(filter) as Box<dyn arch_atlas::filter::Filter>];
     ///
     /// let builder = PipelineBuilder::new()
     ///     .block_details_with_filters(MyBlockDetailsProcessor, filters);
@@ -1132,7 +1132,7 @@ impl PipelineBuilder {
     /// # Example
     ///
     /// ```ignore
-    /// use atlas_arch::pipeline::PipelineBuilder;
+    /// use arch_atlas::pipeline::PipelineBuilder;
     ///
     /// let builder = PipelineBuilder::new()
     ///     .instruction(MyDecoder, MyInstructionProcessor);
@@ -1176,7 +1176,7 @@ impl PipelineBuilder {
     /// # Example
     ///
     /// ```ignore
-    /// use atlas_arch::{
+    /// use arch_atlas::{
     ///     pipeline::PipelineBuilder,
     ///     datasource::DatasourceId,
     ///     filter::DatasourceFilter,
@@ -1184,7 +1184,7 @@ impl PipelineBuilder {
     ///
     /// let mainnet_id = DatasourceId::new_named("mainnet");
     /// let filter = DatasourceFilter::new(mainnet_id);
-    /// let filters = vec![Box::new(filter) as Box<dyn atlas_arch::filter::Filter>];
+    /// let filters = vec![Box::new(filter) as Box<dyn arch_atlas::filter::Filter>];
     ///
     /// let builder = PipelineBuilder::new()
     ///     .instruction_with_filters(MyDecoder, MyInstructionProcessor, filters);
@@ -1227,7 +1227,7 @@ impl PipelineBuilder {
     /// # Example
     ///
     /// ```ignore
-    /// use atlas_arch::pipeline::PipelineBuilder;
+    /// use arch_atlas::pipeline::PipelineBuilder;
     ///
     /// let builder = PipelineBuilder::new()
     ///     .transaction(MyTransactionProcessor, Some(MY_SCHEMA.clone()));
@@ -1276,7 +1276,7 @@ impl PipelineBuilder {
     /// # Example
     ///
     /// ```ignore
-    /// use atlas_arch::{
+    /// use arch_atlas::{
     ///     pipeline::PipelineBuilder,
     ///     datasource::DatasourceId,
     ///     filter::DatasourceFilter,
@@ -1284,7 +1284,7 @@ impl PipelineBuilder {
     ///
     /// let mainnet_id = DatasourceId::new_named("mainnet");
     /// let filter = DatasourceFilter::new(mainnet_id);
-    /// let filters = vec![Box::new(filter) as Box<dyn atlas_arch::filter::Filter>];
+    /// let filters = vec![Box::new(filter) as Box<dyn arch_atlas::filter::Filter>];
     ///
     /// let builder = PipelineBuilder::new()
     ///     .transaction_with_filters(MyTransactionProcessor, Some(MY_SCHEMA.clone()), filters);
@@ -1329,7 +1329,7 @@ impl PipelineBuilder {
     ///
     /// ```ignore
     /// use std::sync::Arc;
-    /// use atlas_arch::pipeline::PipelineBuilder;
+    /// use arch_atlas::pipeline::PipelineBuilder;
     ///
     /// let builder = PipelineBuilder::new()
     ///     .metrics(Arc::new(LogMetrics::new()));
@@ -1379,7 +1379,7 @@ impl PipelineBuilder {
     /// # Example
     ///
     /// ```rust
-    /// use atlas_arch::pipeline::PipelineBuilder;
+    /// use arch_atlas::pipeline::PipelineBuilder;
     ///
     /// let builder = PipelineBuilder::new()
     ///     .metrics_flush_interval(60);
@@ -1402,7 +1402,7 @@ impl PipelineBuilder {
     /// # Example
     ///
     /// ```rust
-    /// use atlas_arch::pipeline::PipelineBuilder;
+    /// use arch_atlas::pipeline::PipelineBuilder;
     /// use tokio_util::sync::CancellationToken;
     ///
     /// let builder = PipelineBuilder::new()
@@ -1430,7 +1430,7 @@ impl PipelineBuilder {
     /// # Example
     ///
     /// ```rust
-    /// use atlas_arch::pipeline::PipelineBuilder;
+    /// use arch_atlas::pipeline::PipelineBuilder;
     ///
     /// let builder = PipelineBuilder::new()
     ///     .channel_buffer_size(1000);
@@ -1458,7 +1458,7 @@ impl PipelineBuilder {
     /// ```ignore
     /// use std::sync::Arc;
     ///
-    /// atlas_arch::pipeline::Pipeline::builder()
+    /// arch_atlas::pipeline::Pipeline::builder()
     /// .datasource(transaction_crawler)
     /// .metrics(Arc::new(LogMetrics::new()))
     /// .metrics(Arc::new(PrometheusMetrics::new()))

@@ -11,21 +11,21 @@ members = [
 resolver = "2"
 
 [workspace.package]
-version = "0.1.5"
+version = "0.2.0"
 
 [workspace.dependencies]
-arch_program = { version = "0.5.15" }
-arch_sdk = { version = "0.5.15" }
+arch_program = { version = "0.6.2" }
+arch_sdk = { version = "0.6.2" }
 
 borsh-derive-internal-satellite = { version = "0.11.0" }
 
-atlas-arch = { version = "0.1.2", path = "./core" }
-atlas-macros = { version = "0.1.2", path = "./macros" }
-atlas-proc-macros = { version = "0.1.2", path = "./proc-macros" }
-atlas-rocksdb-checkpoint-store = { version = "0.1.2", path = "./checkpoint-stores/rocksdb-store" }
-atlas-arch-rpc-datasource = { version = "0.1.2", path = "./datasources/arch-rpc" }
-atlas-titan-datasource = { version = "0.1.2", path = "./datasources/titan" }
-atlas-rollback-datasource = { version = "0.1.2", path = "./datasources/rollback" }
+arch-atlas = { version = "0.2.0", path = "./core" }
+arch-atlas-macros = { version = "0.2.0", path = "./macros" }
+arch-atlas-proc-macros = { version = "0.2.0", path = "./proc-macros" }
+arch-atlas-rocksdb-checkpoint-store = { version = "0.2.0", path = "./checkpoint-stores/rocksdb-store" }
+arch-atlas-rpc-datasource = { version = "0.2.0", path = "./datasources/arch-rpc" }
+arch-atlas-titan-datasource = { version = "0.2.0", path = "./datasources/titan" }
+arch-atlas-rollback-datasource = { version = "0.2.0", path = "./datasources/rollback" }
 
 async-trait = "0.1.87"
 borsh = { version = "1.4.0", features = ["derive"] }

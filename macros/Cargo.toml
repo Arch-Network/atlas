@@ -1,5 +1,5 @@
 [package]
-name = "atlas-macros"
+name = "arch-atlas-macros"
 version.workspace = true
 edition = "2021"
 description = "Macros for Atlas"

@@ -1,6 +1,6 @@
 //! # atlas Proc Macros
 //!
-//! `atlas-proc-macros` is a collection of procedural macros designed to
+//! `arch-atlas-proc-macros` is a collection of procedural macros designed to
 //! simplify and enhance Rust-based development for Solana programs using the
 //! atlas framework. This crate provides macros for generating
 //! deserialization implementations, instruction decoders, and type conversions.
@@ -10,7 +10,7 @@
 //! The macros in this crate are intended to streamline common patterns
 //! encountered when working with atlas, particularly around deserialization,
 //! instruction decoding, and structuring custom types. By leveraging
-//! `atlas-proc-macros`, you can reduce the amount of manual coding and ensure
+//! `arch-atlas-proc-macros`, you can reduce the amount of manual coding and ensure
 //! consistent, performant handling of Solana-specific data structures.
 //!
 //! ## Key Features
@@ -40,7 +40,7 @@
 //! ## Contribution
 //!
 //! Contributions are welcome! If you have ideas for improving or expanding the
-//! functionality of `atlas_macros`, please consider submitting a pull request
+//! functionality of `arch_atlas_macros`, please consider submitting a pull request
 //! or opening an issue on the project’s GitHub repository.
 use {
     borsh_derive_internal_satellite::*,
@@ -82,7 +82,7 @@ use {
 /// # Example
 ///
 /// ```ignore
-/// use atlas_proc_macros::AtlasDeserialize;
+/// use arch_atlas_proc_macros::AtlasDeserialize;
 ///
 /// #[derive(AtlasDeserialize)]
 /// #[atlas(discriminator = "0x01")]
@@ -135,7 +135,7 @@ pub fn atlas_deserialize_derive(input_token_stream: TokenStream) -> TokenStream 
         #deser
 
         #[automatically_derived]
-        impl atlas_arch::deserialize::AtlasDeserialize for #name {
+        impl arch_atlas::deserialize::AtlasDeserialize for #name {
             const DISCRIMINATOR: &'static [u8] = #discriminator;
 
             fn deserialize(data: &[u8]) -> Option<Self> {
@@ -148,10 +148,10 @@ pub fn atlas_deserialize_derive(input_token_stream: TokenStream) -> TokenStream 
                     return None;
                 }
 
-                 match atlas_arch::borsh::BorshDeserialize::deserialize(&mut rest) {
+                 match arch_atlas::borsh::BorshDeserialize::deserialize(&mut rest) {
                     Ok(res) => {
                         if !rest.is_empty() {
-                            atlas_arch::log::debug!(
+                            arch_atlas::log::debug!(
                                 "Not all bytes were read when deserializing {}: {} bytes remaining",
                                 stringify!(#name),
                                 rest.len(),
@@ -187,7 +187,7 @@ pub fn atlas_deserialize_derive(input_token_stream: TokenStream) -> TokenStream 
 /// # Example
 ///
 /// ```ignore
-/// use atlas_proc_macros::AtlasDeserialize;
+/// use arch_atlas_proc_macros::AtlasDeserialize;
 ///
 /// #[derive(AtlasDeserialize)]
 /// #[atlas(discriminator = "0x1234")]
@@ -664,7 +664,7 @@ pub fn instruction_decoder_collection(input: TokenStream) -> TokenStream {
 
         parse_instruction_arms.push(quote! {
             if let Some(decoded_instruction) = #decoder_expr.decode_instruction(&instruction) {
-                return Some(atlas_arch::instruction::DecodedInstruction {
+                return Some(arch_atlas::instruction::DecodedInstruction {
                     program_id: instruction.program_id,
                     accounts: instruction.accounts.clone(),
                     data: #instructions_enum_name::#program_variant(decoded_instruction.data),
@@ -695,12 +695,12 @@ pub fn instruction_decoder_collection(input: TokenStream) -> TokenStream {
             #(#program_variants),*
         }
 
-        impl atlas_arch::collection::InstructionDecoderCollection for #instructions_enum_name {
+        impl arch_atlas::collection::InstructionDecoderCollection for #instructions_enum_name {
             type InstructionType = #instruction_types_enum_name;
 
             fn parse_instruction(
                 instruction: &solana_instruction::Instruction
-            ) -> Option<atlas_arch::instruction::DecodedInstruction<Self>> {
+            ) -> Option<arch_atlas::instruction::DecodedInstruction<Self>> {
                 #(#parse_instruction_arms)*
                 None
             }
@@ -755,7 +755,7 @@ pub fn instruction_decoder_collection(input: TokenStream) -> TokenStream {
 /// # Example
 ///
 /// ```rust
-/// use atlas_proc_macros::InstructionType;
+/// use arch_atlas_proc_macros::InstructionType;
 ///
 /// #[derive(InstructionType)]
 /// enum Instructions {
