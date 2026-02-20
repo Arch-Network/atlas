@@ -1,0 +1,23 @@
+[package]
+name = "arch-atlas-integration-test"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+arch_program = { workspace = true }
+arch_sdk = { workspace = true }
+arch-atlas = { workspace = true }
+arch-atlas-rpc-datasource = { workspace = true }
+
+async-trait = { workspace = true }
+tokio = { workspace = true }
+tokio-util = { workspace = true }
+tracing = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+hex = { workspace = true }
+
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+clap = { version = "4", features = ["derive", "env"] }
+tokio-tungstenite = { version = "0.26", features = ["rustls-tls-webpki-roots"] }
